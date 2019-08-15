@@ -7,7 +7,6 @@ var cherrio = require('cheerio');
 var Article = require('../../models/article');
 var Note = require('../../models/note.js');
 
-// get all notes from database
 router.get('/', function(req, res) {
     Note
         .find({})
@@ -21,7 +20,6 @@ router.get('/', function(req, res) {
         });
 });
 
-// Add a note to save article
 router.post('/:id', function(req, res) {
     let newNote = new Note(req.body);
     newNote.save(function(err, doc) {
@@ -45,7 +43,6 @@ router.post('/:id', function(req, res) {
     });
 });
 
-// Delete a note from a saved article
 router.delete('/:id', function(req, res) {
     Note.findByIdAndRemove(req.params.id, function(err, note) {
         if (err) {
